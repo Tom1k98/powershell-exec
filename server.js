@@ -12,6 +12,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+const psFile = ".\\test.ps1";
+
 app.post("/test", (req, res) => {
   res.json({
     msg: "Success!",
@@ -24,7 +26,7 @@ app.post("/reset", (req, res) => {
     executionPolicy: "Bypass",
     noProfile: true,
   });
-  ps.addCommand(".\\test.ps1");
+  ps.addCommand(psFile);
   ps.addArgument(req.body.testArg);
   ps.addArgument(req.body.testArg2);
 
